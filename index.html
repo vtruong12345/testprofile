@@ -475,11 +475,11 @@
 
         <div class="feature fade-up">
           <h3>LieE</h3>
-          <p class="small"><strong>Liên Hệ 1:</strong> href="https://www.facebook.com/vantruonggg.08"</p>
-          <p class="small"><strong>Liên Hệ 2:</strong> href="https://zalo.me/0981251350"</p>
+          <p class="small"><strong>Liên Hệ 1:</strong> FB : Văn Trường (SúpPọt)</p>
+          <p class="small"><strong>Liên Hệ 2:</strong> ZL : 0981251350</p>
           <div style="margin-top:12px">
     
-            <a class="btn" href="tel:[Số điện thoại]">☎ Gọi</a>
+            <a class="btn" href="https://www.facebook.com/vantruonggg.08">☎ Liên Hệ</a>
           </div>
         </div>
       </div>
@@ -513,9 +513,9 @@
       <p class="small" style="color:var(--muted);margin-bottom:12px">Điền thông tin, chúng tôi sẽ liên hệ trong thời gian sớm nhất.</p>
       <form id="contactForm" onsubmit="submitForm(event)">
         <div style="display:grid;gap:8px">
-          <input id="c_name" placeholder="Họ và tên" required style="padding:12px;border-radius:10px;border:1px solid rgba(255,255,255,0.04);background:transparent;color:var(--brand-light)">
-          <input id="c_phone" placeholder="Số điện thoại" required style="padding:12px;border-radius:10px;border:1px solid rgba(255,255,255,0.04);background:transparent;color:var(--brand-light)">
-          <input id="c_service" placeholder="Dịch vụ quan tâm (ví dụ: PPF ô tô)" style="padding:12px;border-radius:10px;border:1px solid rgba(255,255,255,0.04);background:transparent;color:var(--brand-light)">
+          <input id="c_name" placeholder="Họ Và Tên" required style="padding:12px;border-radius:10px;border:1px solid rgba(255,255,255,0.04);background:transparent;color:var(--brand-light)">
+          <input id="c_phone" placeholder="SDT ZALO" required style="padding:12px;border-radius:10px;border:1px solid rgba(255,255,255,0.04);background:transparent;color:var(--brand-light)">
+          <input id="c_service" placeholder="Dịch vụ quan tâm " style="padding:12px;border-radius:10px;border:1px solid rgba(255,255,255,0.04);background:transparent;color:var(--brand-light)">
           <textarea id="c_note" placeholder="Ghi chú (tuỳ chọn)" rows="3" style="padding:12px;border-radius:10px;border:1px solid rgba(255,255,255,0.04);background:transparent;color:var(--brand-light)"></textarea>
           <div style="display:flex;gap:10px;justify-content:flex-end">
             <button type="button" class="btn" onclick="closeContactForm()">Huỷ</button>
@@ -594,7 +594,7 @@
     // Quick phone button on mobile (floating)
     (function createFloatingPhone(){
       const btn = document.createElement('a');
-      btn.href = 'tel:[Số điện thoại]';
+      btn.href = 'tel:0981251350';
       btn.className = 'floating-phone';
       btn.innerHTML = '☎';
       Object.assign(btn.style,{
@@ -632,7 +632,6 @@
         brand: '[Điền]',
         slogan: '[Điền]',
         phone: '[Số điện thoại]',
-        telegram: '[TelegramID]'
       };
       // Replace simple items (for demo; manual edit recommended)
       document.title = (data.brand || '[Điền]') + ' — Bảng giá dịch vụ';
