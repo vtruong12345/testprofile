@@ -1,0 +1,635 @@
+<!doctype html>
+<html lang="vi">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <title>[Điền] — Bảng giá dịch vụ chuyên nghiệp</title>
+  <meta name="description" content="Bảng giá dịch vụ [Ví dụ: Film cách nhiệt, PPF ô tô, nhà kính] — Chuyên nghiệp, bảo hành, hỗ trợ đại lý." />
+  <style>
+    /* ===========================
+       CONFIG: dễ chỉnh sửa
+       =========================== */
+    :root{
+      --brand-dark: #0b0b0c;      /* nền tối */
+      --brand-accent: #f6b800;    /* vàng chủ đạo */
+      --brand-light: #ffffff;     /* chữ/nền sáng */
+      --muted: #6b6f76;
+      --glass: rgba(255,255,255,0.04);
+      --card-bg: linear-gradient(180deg, rgba(255,255,255,0.02), rgba(255,255,255,0.01));
+      --radius: 12px;
+      --shadow: 0 8px 28px rgba(11,11,12,0.6);
+      --ease: cubic-bezier(.2,.9,.2,1);
+      --max-width: 1100px;
+      --mobile-break: 820px;
+    }
+
+    /* ===========================
+       Global reset & base
+       =========================== */
+    *{box-sizing:border-box;margin:0;padding:0}
+    html,body{height:100%}
+    body{
+      font-family: Inter, "Helvetica Neue", Arial, sans-serif;
+      background: linear-gradient(180deg, #060606 0%, #0f0f10 100%);
+      color: var(--brand-light);
+      -webkit-font-smoothing:antialiased;
+      -moz-osx-font-smoothing:grayscale;
+      line-height:1.45;
+      padding:24px;
+      display:flex;
+      justify-content:center;
+    }
+    .container{
+      width:100%;
+      max-width:var(--max-width);
+    }
+
+    /* ===========================
+       Header
+       =========================== */
+    header{
+      display:flex;
+      align-items:center;
+      justify-content:space-between;
+      gap:16px;
+      padding:18px;
+      border-radius:14px;
+      background: linear-gradient(90deg, rgba(255,255,255,0.02), rgba(255,255,255,0.01));
+      backdrop-filter: blur(6px);
+      box-shadow: var(--shadow);
+      margin-bottom:20px;
+      position:sticky;
+      top:18px;
+      z-index:50;
+    }
+    .logo {
+      display:flex;
+      gap:12px;
+      align-items:center;
+      text-decoration:none;
+      color:var(--brand-light);
+    }
+    .logo .mark{
+      width:48px;height:48px;border-radius:10px;
+      background: linear-gradient(135deg,var(--brand-accent), #f9d66b);
+      display:flex;align-items:center;justify-content:center;
+      color:var(--brand-dark);font-weight:700;font-size:18px;
+      box-shadow: 0 6px 18px rgba(0,0,0,0.45);
+    }
+    .logo .txt{
+      display:flex;flex-direction:column;line-height:1;
+    }
+    .logo .txt .brand {font-weight:700}
+    .logo .txt .slogan {font-size:12px;color:var(--muted)}
+
+    nav{
+      display:flex;gap:18px;align-items:center;
+    }
+    nav a{
+      color:var(--brand-light);text-decoration:none;font-weight:600;font-size:15px;
+      padding:8px 12px;border-radius:8px;transition:all .22s var(--ease);
+    }
+    nav a:hover{transform:translateY(-3px); color:var(--brand-accent)}
+    .header-actions{display:flex;gap:10px;align-items:center}
+
+    .btn{
+      display:inline-flex;align-items:center;gap:8px;padding:10px 14px;border-radius:10px;
+      background:transparent;border:1px solid rgba(255,255,255,0.06);
+      color:var(--brand-light);cursor:pointer;font-weight:700;
+      transition:all .18s var(--ease);
+    }
+    .btn-primary{
+      background:linear-gradient(90deg,var(--brand-accent),#ffd86a);
+      color:var(--brand-dark);border:none;
+      box-shadow: 0 8px 28px rgba(246,184,0,0.12);
+    }
+    .btn:hover{transform:translateY(-4px); box-shadow:0 18px 40px rgba(0,0,0,0.35)}
+    .cta-phone {background:linear-gradient(90deg,#00b894,#00cec9); border:none;color:#021;}
+
+    /* Mobile menu toggle */
+    .menu-toggle{display:none}
+    @media (max-width: var(--mobile-break)){
+      nav{display:none}
+      .menu-toggle{display:inline-flex}
+    }
+
+    /* ===========================
+       Hero / Banner
+       =========================== */
+    .hero{
+      display:flex;
+      gap:28px;
+      align-items:center;
+      padding:28px;
+      border-radius:14px;
+      background: linear-gradient(180deg, rgba(255,255,255,0.02), rgba(255,255,255,0.01));
+      box-shadow: var(--shadow);
+      margin-bottom:24px;
+      overflow:hidden;
+    }
+    .hero-left{flex:1;min-width:260px}
+    .hero-right{width:420px;max-width:42%;position:relative}
+    .hero h1{
+      font-size:28px;margin-bottom:8px;color:var(--brand-light);
+    }
+    .hero p.lead{color:var(--muted);margin-bottom:16px}
+    .badges{display:flex;gap:10px;margin-bottom:18px;flex-wrap:wrap}
+    .badge{background:rgba(255,255,255,0.03);padding:8px 12px;border-radius:999px;font-weight:700;color:var(--brand-light);font-size:13px;border:1px solid rgba(255,255,255,0.02)}
+    .hero-cta{display:flex;gap:12px;align-items:center}
+    .hero-quick{display:flex;gap:8px;align-items:center;background:var(--glass);padding:8px;border-radius:10px}
+    .price-highlight{
+      font-size:22px;font-weight:800;background:linear-gradient(90deg,var(--brand-accent),#ffd86a);
+      -webkit-background-clip:text;background-clip:text;color:transparent;
+    }
+
+    /* small card on right */
+    .card-quote{
+      background: linear-gradient(180deg, rgba(255,255,255,0.02), rgba(255,255,255,0.01));
+      border-radius:12px;padding:18px;box-shadow: 0 10px 30px rgba(2,2,2,0.6);
+      border:1px solid rgba(255,255,255,0.03);
+      transform:translateY(0);
+      transition:transform .45s var(--ease);
+    }
+    .card-quote:hover{transform:translateY(-8px)}
+    .card-quote h3{font-size:18px;margin-bottom:8px}
+    .card-quote p{color:var(--muted);font-size:14px;margin-bottom:12px}
+    .card-quote .mini-actions{display:flex;gap:8px}
+
+    /* ===========================
+       Pricing Section (cards)
+       =========================== */
+    .section{
+      margin-bottom:30px;
+    }
+    .section .title{
+      display:flex;align-items:center;justify-content:space-between;margin-bottom:18px;
+    }
+    .section .title h2{font-size:20px}
+    .pricing-grid{
+      display:grid;
+      grid-template-columns:repeat(3,1fr);
+      gap:18px;
+    }
+    .price-card{
+      background:var(--card-bg);
+      padding:18px;border-radius:14px;border:1px solid rgba(255,255,255,0.03);
+      transition:transform .28s var(--ease), box-shadow .28s var(--ease);
+    }
+    .price-card:hover{transform:translateY(-8px); box-shadow:0 16px 36px rgba(0,0,0,0.6)}
+    .price-card .head{display:flex;justify-content:space-between;align-items:center;margin-bottom:12px}
+    .price-card .service{font-weight:800}
+    .price-card .price{font-size:22px;color:var(--brand-accent);font-weight:900}
+    .price-card p.desc{color:var(--muted);font-size:14px;margin-bottom:12px}
+    .price-card ul{color:var(--muted);font-size:13px;margin-bottom:14px;list-style:none;padding-left:0}
+    .price-card ul li{padding:6px 0;border-top:1px dashed rgba(255,255,255,0.02)}
+    .price-card .actions{display:flex;gap:8px;align-items:center}
+    .badge-pop{background:rgba(246,184,0,0.12);color:var(--brand-accent);padding:6px 8px;border-radius:8px;font-weight:700;font-size:13px}
+
+    /* Highlight middle card */
+    .price-card.featured{
+      background: linear-gradient(180deg, rgba(246,184,0,0.08), rgba(246,184,0,0.03));
+      border: 1px solid rgba(246,184,0,0.18);
+      box-shadow: 0 14px 44px rgba(246,184,0,0.06);
+      transform:translateY(-6px);
+    }
+
+    /* ===========================
+       Advantages & Policy
+       =========================== */
+    .grid-2{display:grid;grid-template-columns:1fr 1fr;gap:18px}
+    .feature{
+      background:linear-gradient(180deg, rgba(255,255,255,0.02), rgba(255,255,255,0.01));
+      padding:16px;border-radius:12px;border:1px solid rgba(255,255,255,0.03);
+    }
+    .feature h3{margin-bottom:10px}
+    .feature ul{list-style:none;padding-left:0;color:var(--muted)}
+    .feature ul li{padding:8px 0;border-top:1px dashed rgba(255,255,255,0.02)}
+
+    /* ===========================
+       CTA Bar
+       =========================== */
+    .cta-bar{
+      margin-top:18px;padding:18px;border-radius:12px;display:flex;gap:12px;align-items:center;justify-content:space-between;
+      background:linear-gradient(90deg, rgba(0,0,0,0.25), rgba(255,255,255,0.02));
+      border:1px solid rgba(255,255,255,0.03);
+    }
+    .cta-bar .left{display:flex;gap:12px;align-items:center}
+    .cta-actions{display:flex;gap:10px;align-items:center}
+    .icon {
+      width:44px;height:44px;border-radius:10px;background:rgba(255,255,255,0.03);display:flex;align-items:center;justify-content:center;
+      font-weight:700;color:var(--brand-accent);
+    }
+
+    /* ===========================
+       Footer
+       =========================== */
+    footer{
+      margin-top:28px;padding:18px;border-radius:12px;background:linear-gradient(180deg, rgba(255,255,255,0.02), rgba(255,255,255,0.01));
+      display:flex;justify-content:space-between;gap:18px;align-items:center;border:1px solid rgba(255,255,255,0.03);
+    }
+    .socials a{margin-left:8px;color:var(--muted);text-decoration:none}
+    .small{font-size:13px;color:var(--muted)}
+
+    /* ===========================
+       Responsive
+       =========================== */
+    @media (max-width: 1100px){
+      .hero-right{display:none}
+      .pricing-grid{grid-template-columns:repeat(2,1fr)}
+      .grid-2{grid-template-columns:1fr}
+    }
+    @media (max-width: 640px){
+      body{padding:12px}
+      .hero{flex-direction:column}
+      .pricing-grid{grid-template-columns:1fr}
+      header{flex-direction:column;align-items:flex-start;gap:10px}
+      footer{flex-direction:column;align-items:flex-start;gap:12px}
+      .cta-bar{flex-direction:column;align-items:flex-start}
+    }
+
+    /* ===========================
+       Small animations
+       =========================== */
+    .fade-up {opacity:0;transform:translateY(10px);transition:opacity .6s var(--ease), transform .6s var(--ease)}
+    .fade-up.in {opacity:1;transform:translateY(0)}
+    .pulse{
+      animation: pulse 2.8s infinite;
+    }
+    @keyframes pulse{
+      0%{transform:scale(1);opacity:1}
+      50%{transform:scale(1.03);opacity:.95}
+      100%{transform:scale(1);opacity:1}
+    }
+
+    /* link visuals */
+    a.link-plain{color:var(--brand-accent);text-decoration:none;font-weight:800}
+  </style>
+</head>
+<body>
+  <div class="container">
+    <!-- Header -->
+    <header>
+      <a href="#" class="logo" aria-label="Logo">
+        <div class="mark">DH</div>
+        <div class="txt">
+          <div class="brand">[Điền]</div>
+          <div class="slogan">[Điền]</div>
+        </div>
+      </a>
+
+      <nav>
+        <a href="#bang-gia">Bảng giá</a>
+        <a href="#uu-diem">Ưu điểm</a>
+        <a href="#chinh-sach">Chính sách</a>
+        <a href="#lien-he">Liên hệ</a>
+      </nav>
+
+      <div class="header-actions">
+        <a href="tel:[Số điện thoại]" class="btn cta-phone" title="Gọi ngay">
+          ☎ Gọi ngay
+        </a>
+        <button class="btn btn-primary" onclick="scrollToSection('#bang-gia')">Nhận báo giá</button>
+        <button class="menu-toggle btn" onclick="toggleMenu(this)">☰</button>
+      </div>
+    </header>
+
+    <!-- Hero -->
+    <section class="hero">
+      <div class="hero-left">
+        <div class="badges fade-up" style="--delay:.05s">
+          <div class="badge">Lĩnh vực: [Ví dụ: Film cách nhiệt, PPF ô tô, nhà kính]</div>
+          <div class="badge">Bảo hành: [Bảo hành dài hạn]</div>
+        </div>
+        <h1 class="fade-up in" style="transition-delay:.06s">Dịch vụ chuyên nghiệp — [Điền tên lĩnh vực]</h1>
+        <p class="lead fade-up in" style="transition-delay:.08s">
+          [Mô tả ngắn về doanh nghiệp — ví dụ: Thi công film cách nhiệt, dán PPF, giải pháp bảo vệ xe hơi & kỹ thuật nhà kính với quy trình chuẩn, vật liệu cao cấp.]
+        </p>
+
+        <div class="hero-cta fade-up in" style="transition-delay:.12s">
+          <div class="hero-quick">
+            <div>
+              <div class="small">Bảng giá từ</div>
+              <div class="price-highlight">[Ví dụ: 1.200.000₫]</div>
+            </div>
+          </div>
+
+          <div style="display:flex;gap:10px;">
+            <a href="tel:[Số điện thoại]" class="btn cta-phone" style="font-weight:800">
+              ☎ Gọi ngay
+            </a>
+            <a href="https://zalo.me/[Số điện thoại]" target="_blank" class="btn" style="background:#2dbd5b;border:none;color:#021;font-weight:800">Zalo</a>
+            <a href="https://t.me/[TelegramID]" target="_blank" class="btn" style="background:#0088cc;border:none;color:#fff;font-weight:800">Telegram</a>
+          </div>
+        </div>
+
+        <!-- trust / selling points -->
+        <div style="margin-top:18px" class="fade-up in" style="transition-delay:.15s">
+          <div class="small" style="color:var(--muted)">
+            Cam kết: Thi công chuyên nghiệp • Bảo hành dài hạn • Hỗ trợ đại lý toàn quốc
+          </div>
+        </div>
+      </div>
+
+      <div class="hero-right">
+        <div class="card-quote">
+          <h3>Nhận báo giá nhanh</h3>
+          <p>Gửi yêu cầu, chúng tôi sẽ phản hồi trong vòng 30 phút (giờ hành chính). Hỗ trợ tư vấn kỹ thuật, chọn gói phù hợp với ngân sách.</p>
+          <div class="mini-actions">
+            <a href="tel:[Số điện thoại]" class="btn cta-phone">☎ Gọi ngay</a>
+            <button class="btn btn-primary" onclick="openContactForm()">Yêu cầu báo giá</button>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Pricing Section -->
+    <section id="bang-gia" class="section">
+      <div class="title">
+        <h2>Bảng giá dịch vụ chính</h2>
+        <div class="small">Giá mang tính tham khảo. Liên hệ để nhận báo giá chính xác theo kích thước / cấu hình.</div>
+      </div>
+
+      <div class="pricing-grid">
+        <!-- Card 1 -->
+        <div class="price-card fade-up">
+          <div class="head">
+            <div class="service">[Tên dịch vụ 1]</div>
+            <div class="price">[Giá]</div>
+          </div>
+          <p class="desc">[Mô tả ngắn]</p>
+          <ul>
+            <li>• Thi công chuyên nghiệp</li>
+            <li>• Vật liệu cao cấp</li>
+            <li>• Thời gian hoàn thiện: [vd: 1-2 ngày]</li>
+          </ul>
+          <div class="actions">
+            <button class="btn" onclick="scrollToSection('#lien-he')">Yêu cầu</button>
+            <a class="btn btn-primary" href="tel:[Số điện thoại]">☎ Đặt ngay</a>
+          </div>
+        </div>
+
+        <!-- Card 2 - featured -->
+        <div class="price-card featured fade-up">
+          <div class="head">
+            <div class="service">[Tên dịch vụ 2] <span class="badge-pop">Phổ biến</span></div>
+            <div class="price">[Giá]</div>
+          </div>
+          <p class="desc">[Mô tả ngắn nổi bật]</p>
+          <ul>
+            <li>• Bảo hành: [vd: 5 năm]</li>
+            <li>• Hỗ trợ kỹ thuật</li>
+            <li>• Ưu đãi cho đại lý</li>
+          </ul>
+          <div class="actions">
+            <button class="btn" onclick="openContactForm()">Nhận ưu đãi</button>
+            <a class="btn btn-primary" href="https://zalo.me/[Số điện thoại]" target="_blank">✦ Zalo</a>
+          </div>
+        </div>
+
+        <!-- Card 3 -->
+        <div class="price-card fade-up">
+          <div class="head">
+            <div class="service">[Tên dịch vụ 3]</div>
+            <div class="price">[Giá]</div>
+          </div>
+          <p class="desc">[Mô tả ngắn]</p>
+          <ul>
+            <li>• Không ép đơn hàng</li>
+            <li>• Hỗ trợ nhận diện thương hiệu</li>
+            <li>• Đào tạo sau bán</li>
+          </ul>
+          <div class="actions">
+            <button class="btn" onclick="scrollToSection('#chinh-sach')">Xem chính sách</button>
+            <a class="btn btn-primary" href="tel:[Số điện thoại]">☎ Đặt lịch</a>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Advantages & Policies -->
+    <section class="section">
+      <div class="grid-2">
+        <div class="feature fade-up">
+          <h3 id="uu-diem">Ưu điểm / Lợi thế</h3>
+          <ul>
+            <li>• Thi công chuyên nghiệp — đội ngũ kỹ thuật tay nghề cao</li>
+            <li>• Bảo hành dài hạn — yên tâm trong quá trình sử dụng</li>
+            <li>• Không ép đơn hàng — tư vấn trung thực</li>
+            <li>• Hỗ trợ đại lý toàn quốc — phát triển mạng lưới</li>
+          </ul>
+        </div>
+
+        <div class="feature fade-up">
+          <h3 id="chinh-sach">Chính sách dành cho đại lý</h3>
+          <ul>
+            <li>• Không áp doanh số bắt buộc</li>
+            <li>• Hỗ trợ marketing (tài liệu, hình ảnh, nội dung)</li>
+            <li>• Đào tạo hàng năm về kỹ thuật & sales</li>
+            <li>• Hỗ trợ nhận diện thương hiệu & POS</li>
+          </ul>
+        </div>
+      </div>
+    </section>
+
+    <!-- CTA Bar -->
+    <div class="cta-bar fade-up">
+      <div class="left">
+        <div class="icon">☎</div>
+        <div>
+          <div style="font-weight:800">Sẵn sàng hỗ trợ — Liên hệ ngay</div>
+          <div class="small">Tên: [Tên bạn] • SĐT: <a class="link-plain" href="tel:[Số điện thoại]">[Số điện thoại]</a></div>
+        </div>
+      </div>
+
+      <div class="cta-actions">
+        <a class="btn cta-phone" href="tel:[Số điện thoại]">☎ Gọi nhanh</a>
+        <a class="btn" href="https://zalo.me/[Số điện thoại]" target="_blank">Zalo</a>
+        <a class="btn" href="https://t.me/[TelegramID]" target="_blank" style="background:#0088cc;border:none;color:#fff">Telegram</a>
+      </div>
+    </div>
+
+    <!-- Contact / Branches -->
+    <section id="lien-he" class="section">
+      <div class="title">
+        <h2>Thông tin liên hệ</h2>
+        <div class="small">Liên hệ ngay để nhận báo giá & ưu đãi đại lý</div>
+      </div>
+
+      <div class="grid-2">
+        <div class="feature fade-up">
+          <h3>Thông tin chính</h3>
+          <p class="small"><strong>Tên:</strong> [Tên bạn]</p>
+          <p class="small"><strong>SĐT:</strong> <a href="tel:[Số điện thoại]" class="link-plain">[Số điện thoại]</a></p>
+          <p class="small"><strong>Địa chỉ:</strong> [Địa chỉ]</p>
+          <p class="small"><strong>Email:</strong> <a href="mailto:info@example.com" class="link-plain">info@example.com</a></p>
+        </div>
+
+        <div class="feature fade-up">
+          <h3>Chi nhánh</h3>
+          <p class="small"><strong>Chi nhánh 1:</strong> [Địa chỉ]</p>
+          <p class="small"><strong>Chi nhánh 2:</strong> [Địa chỉ]</p>
+          <div style="margin-top:12px">
+            <a class="btn btn-primary" href="https://maps.google.com?q=[Địa chỉ]" target="_blank">Chỉ đường</a>
+            <a class="btn" href="tel:[Số điện thoại]">☎ Gọi</a>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Footer -->
+    <footer>
+      <div>
+        <div style="font-weight:800">[Điền] — [Điền]</div>
+        <div class="small">© <span id="year"></span> tất cả quyền được bảo lưu.</div>
+      </div>
+
+      <div style="display:flex;flex-direction:column;align-items:flex-end;">
+        <div class="small">Kết nối với chúng tôi</div>
+        <div class="socials" style="margin-top:8px">
+          <a href="https://zalo.me/[Số điện thoại]" target="_blank">Zalo</a>
+          <a href="https://t.me/[TelegramID]" target="_blank">Telegram</a>
+          <a href="https://facebook.com" target="_blank">Facebook</a>
+        </div>
+      </div>
+    </footer>
+  </div>
+
+  <!-- Contact Modal (simple) -->
+  <div id="contactModal" style="display:none;position:fixed;inset:0;background:rgba(0,0,0,0.6);z-index:90;align-items:center;justify-content:center;padding:24px">
+    <div style="max-width:520px;width:100%;background:linear-gradient(180deg,#0f0f10,#070707);padding:20px;border-radius:12px;border:1px solid rgba(255,255,255,0.03);box-shadow:0 18px 44px rgba(0,0,0,0.7);">
+      <div style="display:flex;justify-content:space-between;align-items:center;margin-bottom:12px">
+        <div style="font-weight:800">Yêu cầu báo giá</div>
+        <button onclick="closeContactForm()" class="btn">✕</button>
+      </div>
+      <p class="small" style="color:var(--muted);margin-bottom:12px">Điền thông tin, chúng tôi sẽ liên hệ trong thời gian sớm nhất.</p>
+      <form id="contactForm" onsubmit="submitForm(event)">
+        <div style="display:grid;gap:8px">
+          <input id="c_name" placeholder="Họ và tên" required style="padding:12px;border-radius:10px;border:1px solid rgba(255,255,255,0.04);background:transparent;color:var(--brand-light)">
+          <input id="c_phone" placeholder="Số điện thoại" required style="padding:12px;border-radius:10px;border:1px solid rgba(255,255,255,0.04);background:transparent;color:var(--brand-light)">
+          <input id="c_service" placeholder="Dịch vụ quan tâm (ví dụ: PPF ô tô)" style="padding:12px;border-radius:10px;border:1px solid rgba(255,255,255,0.04);background:transparent;color:var(--brand-light)">
+          <textarea id="c_note" placeholder="Ghi chú (tuỳ chọn)" rows="3" style="padding:12px;border-radius:10px;border:1px solid rgba(255,255,255,0.04);background:transparent;color:var(--brand-light)"></textarea>
+          <div style="display:flex;gap:10px;justify-content:flex-end">
+            <button type="button" class="btn" onclick="closeContactForm()">Huỷ</button>
+            <button type="submit" class="btn btn-primary">Gửi yêu cầu</button>
+          </div>
+        </div>
+      </form>
+    </div>
+  </div>
+
+  <script>
+    // Small utility functions
+    function scrollToSection(sel){
+      const el = document.querySelector(sel);
+      if(!el) return;
+      el.scrollIntoView({behavior:'smooth',block:'start'});
+    }
+
+    function toggleMenu(btn){
+      // Simple mobile menu: show nav links as prompt (could be enhanced)
+      const nav = document.querySelector('nav');
+      if(nav.style.display === 'flex'){
+        nav.style.display = '';
+        btn.classList.remove('active');
+      } else {
+        nav.style.display = 'flex';
+        nav.style.flexDirection = 'column';
+        nav.style.position = 'absolute';
+        nav.style.right = '24px';
+        nav.style.top = '80px';
+        nav.style.background = 'linear-gradient(180deg, rgba(255,255,255,0.02), rgba(255,255,255,0.01))';
+        nav.style.padding = '12px';
+        nav.style.borderRadius = '12px';
+        btn.classList.add('active');
+      }
+    }
+
+    // Contact modal
+    function openContactForm(){
+      document.getElementById('contactModal').style.display = 'flex';
+      setTimeout(()=>{document.getElementById('c_name').focus()}, 120);
+    }
+    function closeContactForm(){
+      document.getElementById('contactModal').style.display = 'none';
+      document.getElementById('contactForm').reset();
+    }
+
+    function submitForm(e){
+      e.preventDefault();
+      const name = document.getElementById('c_name').value.trim();
+      const phone = document.getElementById('c_phone').value.trim();
+      const service = document.getElementById('c_service').value.trim();
+      const note = document.getElementById('c_note').value.trim();
+      // For demo: just show a friendly message. Integrate with your backend / CRM here.
+      alert('Cảm ơn ' + name + '! Yêu cầu của bạn đã được ghi nhận. Chúng tôi sẽ liên hệ qua ' + phone + ' sớm nhất có thể.');
+      closeContactForm();
+    }
+
+    // small animation: reveal fade-up elements on scroll
+    function revealOnScroll(){
+      const els = document.querySelectorAll('.fade-up');
+      const windowH = window.innerHeight;
+      els.forEach((el,i)=>{
+        const rect = el.getBoundingClientRect();
+        if(rect.top <= windowH - 80){
+          el.classList.add('in');
+        }
+      });
+    }
+    window.addEventListener('scroll', revealOnScroll);
+    window.addEventListener('load', ()=>{
+      document.getElementById('year').textContent = new Date().getFullYear();
+      revealOnScroll();
+    });
+
+    // Quick phone button on mobile (floating)
+    (function createFloatingPhone(){
+      const btn = document.createElement('a');
+      btn.href = 'tel:[Số điện thoại]';
+      btn.className = 'floating-phone';
+      btn.innerHTML = '☎';
+      Object.assign(btn.style,{
+        position:'fixed',
+        right:'18px',
+        bottom:'18px',
+        width:'56px',
+        height:'56px',
+        borderRadius:'12px',
+        background:'linear-gradient(90deg,#00b894,#00cec9)',
+        display:'flex',
+        alignItems:'center',
+        justifyContent:'center',
+        color:'#021',
+        fontWeight:'800',
+        fontSize:'20px',
+        zIndex:120,
+        boxShadow:'0 12px 32px rgba(0,0,0,0.45)',
+        textDecoration:'none'
+      });
+      document.body.appendChild(btn);
+    })();
+
+    // Accessibility: close modal with ESC
+    document.addEventListener('keydown', function(e){
+      if(e.key === 'Escape'){
+        closeContactForm();
+      }
+    });
+
+    // Optional: Replace placeholders automatically if you set a JS object (easy editing)
+    // Edit these values to quickly populate the template:
+    (function replacePlaceholders(){
+      const data = {
+        brand: '[Điền]',
+        slogan: '[Điền]',
+        phone: '[Số điện thoại]',
+        telegram: '[TelegramID]'
+      };
+      // Replace simple items (for demo; manual edit recommended)
+      document.title = (data.brand || '[Điền]') + ' — Bảng giá dịch vụ';
+      // Replace elements that contain [Điền] or [Số điện thoại] as text nodes if needed.
+      // (Left intentionally minimal — edit HTML directly for full control.)
+    })();
+  </script>
+</body>
+</html>
